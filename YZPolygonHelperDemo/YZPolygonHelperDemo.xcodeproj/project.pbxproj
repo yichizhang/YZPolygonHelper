@@ -15,7 +15,9 @@
 		1290FECF1A4030BD0045FB1F /* YZPolygonHelperDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1290FECE1A4030BD0045FB1F /* YZPolygonHelperDemoTests.swift */; };
 		1290FED91A4033CE0045FB1F /* ControlPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1290FED81A4033CE0045FB1F /* ControlPointView.swift */; };
 		1290FEDB1A40346B0045FB1F /* PolygonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1290FEDA1A40346B0045FB1F /* PolygonView.swift */; };
-		48C8A357B3940B90EBAC1038 /* libPods-YZPolygonHelperDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CED3CA7F02D1FE6C99E4B3C /* libPods-YZPolygonHelperDemo.a */; };
+		12B694021A41E499003DBB84 /* CentroidPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B694011A41E499003DBB84 /* CentroidPointView.swift */; };
+		12B694041A41E4EC003DBB84 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B694031A41E4EC003DBB84 /* Polygon.swift */; };
+		12B694081A41E8A0003DBB84 /* YZPolygonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B694071A41E8A0003DBB84 /* YZPolygonHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,10 @@
 		1290FED81A4033CE0045FB1F /* ControlPointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPointView.swift; sourceTree = "<group>"; };
 		1290FEDA1A40346B0045FB1F /* PolygonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolygonView.swift; sourceTree = "<group>"; };
 		1290FEDC1A4037150045FB1F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		12B694011A41E499003DBB84 /* CentroidPointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentroidPointView.swift; sourceTree = "<group>"; };
+		12B694031A41E4EC003DBB84 /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		12B694061A41E8A0003DBB84 /* YZPolygonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPolygonHelper.h; sourceTree = "<group>"; };
+		12B694071A41E8A0003DBB84 /* YZPolygonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPolygonHelper.m; sourceTree = "<group>"; };
 		2C34DD2D01A2B77E6C6910BE /* Pods-YZPolygonHelperDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YZPolygonHelperDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YZPolygonHelperDemo/Pods-YZPolygonHelperDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		33BAF05184A81E6BA9562477 /* Pods-YZPolygonHelperDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YZPolygonHelperDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-YZPolygonHelperDemo/Pods-YZPolygonHelperDemo.release.xcconfig"; sourceTree = "<group>"; };
 		8CED3CA7F02D1FE6C99E4B3C /* libPods-YZPolygonHelperDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YZPolygonHelperDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48C8A357B3940B90EBAC1038 /* libPods-YZPolygonHelperDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +82,7 @@
 		1290FEAA1A4030BC0045FB1F = {
 			isa = PBXGroup;
 			children = (
+				12B694051A41E8A0003DBB84 /* Source */,
 				1290FEB51A4030BC0045FB1F /* YZPolygonHelperDemo */,
 				1290FECB1A4030BD0045FB1F /* YZPolygonHelperDemoTests */,
 				1290FEB41A4030BC0045FB1F /* Products */,
@@ -100,7 +106,9 @@
 				1290FEB81A4030BC0045FB1F /* AppDelegate.swift */,
 				1290FEBA1A4030BC0045FB1F /* ViewController.swift */,
 				1290FEDA1A40346B0045FB1F /* PolygonView.swift */,
+				12B694031A41E4EC003DBB84 /* Polygon.swift */,
 				1290FED81A4033CE0045FB1F /* ControlPointView.swift */,
+				12B694011A41E499003DBB84 /* CentroidPointView.swift */,
 				1290FEDC1A4037150045FB1F /* Bridging-Header.h */,
 				1290FEBC1A4030BC0045FB1F /* Main.storyboard */,
 				1290FEBF1A4030BC0045FB1F /* Images.xcassets */,
@@ -135,6 +143,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		12B694051A41E8A0003DBB84 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				12B694061A41E8A0003DBB84 /* YZPolygonHelper.h */,
+				12B694071A41E8A0003DBB84 /* YZPolygonHelper.m */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
 		8A975799C9A9B7110D1B2131 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,11 +169,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1290FED21A4030BD0045FB1F /* Build configuration list for PBXNativeTarget "YZPolygonHelperDemo" */;
 			buildPhases = (
-				6EDAD107FDB76AF1AD73D1FD /* Check Pods Manifest.lock */,
 				1290FEAF1A4030BC0045FB1F /* Sources */,
 				1290FEB01A4030BC0045FB1F /* Frameworks */,
 				1290FEB11A4030BC0045FB1F /* Resources */,
-				E71D8311CFA96C7ADD583811 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -241,39 +257,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		6EDAD107FDB76AF1AD73D1FD /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E71D8311CFA96C7ADD583811 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YZPolygonHelperDemo/Pods-YZPolygonHelperDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		1290FEAF1A4030BC0045FB1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -281,7 +264,10 @@
 			files = (
 				1290FEBB1A4030BC0045FB1F /* ViewController.swift in Sources */,
 				1290FED91A4033CE0045FB1F /* ControlPointView.swift in Sources */,
+				12B694041A41E4EC003DBB84 /* Polygon.swift in Sources */,
+				12B694021A41E499003DBB84 /* CentroidPointView.swift in Sources */,
 				1290FEB91A4030BC0045FB1F /* AppDelegate.swift in Sources */,
+				12B694081A41E8A0003DBB84 /* YZPolygonHelper.m in Sources */,
 				1290FEDB1A40346B0045FB1F /* PolygonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@ import UIKit
 
 class PolygonView: UIView {
 
+	var polygonsArray:Array<Polygon> = []
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -17,5 +18,11 @@ class PolygonView: UIView {
         // Drawing code
     }
     */
+	
+	func addPolygon(polygon:Polygon){
+		
+		self.polygonsArray.append(polygon)
+		
+	}
 
 }

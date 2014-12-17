@@ -9,6 +9,6 @@
 #ifndef YZPolygonHelperDemo_Bridging_Header_h
 #define YZPolygonHelperDemo_Bridging_Header_h
 
-#import <YZPolygonHelper/YZPolygonHelper.h>
+#import "YZPolygonHelper.h"
 
 #endif
