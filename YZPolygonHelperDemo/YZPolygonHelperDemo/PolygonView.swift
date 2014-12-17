@@ -11,18 +11,45 @@ import UIKit
 class PolygonView: UIView {
 
 	var polygonsArray:Array<Polygon> = []
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
+
+	override func drawRect(rect: CGRect) {
+		
+		/*
+		Something's wrong!!!
+		*/
+		super.drawRect(rect)
+		
+		let path = UIBezierPath()
+		
+		var idx:Int = 0
+		for polygon:Polygon in self.polygonsArray {
+			for pointView:ControlPointView in polygon.controlPointViewsArray {
+				if (idx == 0){
+					path.moveToPoint(pointView.center)
+				}else{
+					path.addLineToPoint(pointView.center)
+				}
+				idx++
+			}
+		}
+		
+		path.closePath()
+		UIColor.purpleColor().setStroke()
+		path.stroke()
+	}
+	
+	func updatePolygons() {
+		
+		for polygon:Polygon in self.polygonsArray {
+			polygon.updateCentroid()
+		}
+		
+	}
 	
 	func addPolygon(polygon:Polygon){
 		
 		self.polygonsArray.append(polygon)
-		
+		polygon.addToView(self)
 	}
 
 }

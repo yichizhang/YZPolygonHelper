@@ -15,6 +15,8 @@ class ControlPointView: UIView {
 	func commonInit(){
 		gr = UIPanGestureRecognizer(target: self, action: "panGestureHandler:")
 		self.addGestureRecognizer(gr)
+		
+		self.backgroundColor = UIColor.clearColor()
 	}
 	
 	override init(frame: CGRect) {
@@ -33,11 +35,9 @@ class ControlPointView: UIView {
 	}
 	
 	override func drawRect(rect: CGRect) {
-		var ctx:CGContextRef = UIGraphicsGetCurrentContext();
-		CGContextAddEllipseInRect(ctx, CGRectInset(rect, 1, 1));
-//		CGContextSetFillColor(ctx, CGColorGetComponents(UIColor.blueColor().CGColor));
+		var ctx:CGContextRef = UIGraphicsGetCurrentContext()
+		CGContextAddEllipseInRect(ctx, CGRectInset(rect, 1, 1))
 		CGContextSetStrokeColor(ctx, CGColorGetComponents(UIColor.redColor().CGColor))
-//		CGContextFillPath(ctx);
 		CGContextStrokePath(ctx)
 	}
 	
