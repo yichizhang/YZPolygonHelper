@@ -12,9 +12,9 @@
 
 @interface YZPolygonHelper : NSObject
 
-typedef CGFloat (^YZFloatForIntegerBlock)(NSUInteger);
+typedef CGFloat (^YZFloatForIntegerBlock)(NSInteger);
 
-+ (CGPoint)findCentroidForNumberOfPoints:(NSUInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex;
-+ (BOOL)isPointContained:(CGPoint)point inNumberOfPoints:(NSUInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex;
++ (CGPoint)findCentroidForNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex;
++ (BOOL)isPointContained:(CGPoint)point inNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex;
 
 @end

@@ -11,7 +11,7 @@
 
 @implementation YZPolygonHelper
 
-+ (CGPoint)findCentroidForNumberOfPoints:(NSUInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex{
++ (CGPoint)findCentroidForNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex{
 	
 	CGPoint theCentroid;
 	CGPoint a;
@@ -45,14 +45,13 @@
 	
 }
 
-+ (BOOL)isPointContained:(CGPoint)point inNumberOfPoints:(NSUInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
++ (BOOL)isPointContained:(CGPoint)point inNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
 {
 	BOOL result = NO;
-	NSUInteger numberOfVertices = numberOfPoints;
 	
 	int i = 0;
-	int j = (int)numberOfVertices - 1;
-	for ( ; i < numberOfVertices; j = i++)
+	int j = (int)numberOfPoints - 1;
+	for ( ; i < numberOfPoints; j = i++)
 	{
 		
 		CGPoint iPoint = CGPointMake(xAtIndex(i), yAtIndex(i));
