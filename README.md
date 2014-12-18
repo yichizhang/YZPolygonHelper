@@ -8,7 +8,7 @@ A few class methods to help working with polygons; such as: find the center (cen
 
 Examples
 
-'''
+```swift
 	func updateCentroid(){
 		
 		self.centroidPointView.center =
@@ -29,4 +29,4 @@ Examples
 		)
 		
 	}
-'''
+```
