@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "YZPolygonHelper"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A few class methods to help working with polygons."
   s.homepage     = "https://github.com/yichizhang/" + s.name
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
