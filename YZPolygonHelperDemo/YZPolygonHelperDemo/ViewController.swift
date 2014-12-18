@@ -28,9 +28,11 @@ class ViewController: UIViewController {
 			var amount:CGFloat!
 			amount = CGFloat(i) * CGFloat(M_PI/4)
 			
+			var radius = CGFloat(UInt(arc4random_uniform(UInt32(80)))) + 20
+			
 			var controlPoint = ControlPointView(frame: CGRectMake(0.0, 0.0, 20.0, 20.0))			
-			var x:CGFloat = w + CGFloat(sinf(Float(amount))) * 80
-			var y:CGFloat = h + CGFloat(cosf(Float(amount))) * 80
+			var x:CGFloat = w + CGFloat(sinf(Float(amount))) * radius
+			var y:CGFloat = h + CGFloat(cosf(Float(amount))) * radius
 			
 			controlPoint.center = CGPointMake(x, y)
 			
@@ -66,6 +68,8 @@ class ViewController: UIViewController {
 		})
 		*/
 		self.mainView.updatePolygons()
+//		 Playing with it
+//		self.mainView.setNeedsDisplayInRect(CGRectMake(0, 0, CGRectGetMidX(self.mainView.frame), CGRectGetMidY(self.mainView.frame)))
 		self.mainView.setNeedsDisplay()
 	}
 

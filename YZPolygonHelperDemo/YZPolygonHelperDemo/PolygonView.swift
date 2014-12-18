@@ -19,6 +19,10 @@ class PolygonView: UIView {
 		*/
 		super.drawRect(rect)
 		
+		UIColor.whiteColor().setFill()
+		var ctx = UIGraphicsGetCurrentContext()
+		CGContextFillRect(ctx, rect)
+		
 		let path = UIBezierPath()
 		
 		var idx:Int = 0
