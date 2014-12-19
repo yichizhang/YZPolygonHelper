@@ -30,3 +30,19 @@ Examples
 		
 	}
 ```
+
+```swift
+	var result:Bool =
+	YZPolygonHelper.isPointContained(
+		point,
+		inNumberOfPoints: pointsArray.count,
+		xAtIndexBlock: { (idx:Int) -> CGFloat in
+		
+			return pointsArray[idx].x
+		},
+		yAtIndexBlock: { (idx:Int) -> CGFloat in
+		
+			return pointsArray[idx].y
+		}
+	)
+```
