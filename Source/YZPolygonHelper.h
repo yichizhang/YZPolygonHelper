@@ -15,6 +15,7 @@
 typedef CGFloat (^YZFloatForIntegerBlock)(NSInteger);
 
 + (CGPoint)findCentroidForNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex;
++ (CGPoint)findCentroidForNumberOfPointsNewAlgorithm:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex;
 + (BOOL)isPointContained:(CGPoint)point inNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex;
 
 @end

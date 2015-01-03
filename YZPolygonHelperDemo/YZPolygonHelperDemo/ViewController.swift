@@ -18,6 +18,35 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 
+		// Quick test of a bug
+		
+		let points =
+		[
+			CGPointMake(10, 10),
+			CGPointMake(50, 10),
+			CGPointMake(50, 50),
+			CGPointMake(10, 50),
+		]
+		let center:CGPoint =
+			YZPolygonHelper.findCentroidForNumberOfPointsNewAlgorithm(
+				points.count,
+				
+				xAtIndexBlock: { (UInt idx) -> CGFloat in
+					
+					let point = points[idx]
+					return point.x
+				},
+				
+				yAtIndexBlock:{ (UInt idx) -> CGFloat in
+					
+					let point = points[idx]
+					return point.y
+				}
+		)
+		
+		println(center)
+		
+		
 		self.mainView = PolygonView(frame: self.view.bounds)
 		self.view.addSubview(mainView)
 		
@@ -28,7 +57,8 @@ class ViewController: UIViewController {
 			var amount:CGFloat!
 			amount = CGFloat(i) * CGFloat(M_PI/4)
 			
-			var radius = CGFloat(UInt(arc4random_uniform(UInt32(80)))) + 20
+			let radius = CGFloat(80)
+			//CGFloat(UInt(arc4random_uniform(UInt32(80)))) + 20
 			
 			var controlPoint = ControlPointView(frame: CGRectMake(0.0, 0.0, 20.0, 20.0))			
 			var x:CGFloat = w + CGFloat(sinf(Float(amount))) * radius

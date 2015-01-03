@@ -11,58 +11,88 @@
 
 @implementation YZPolygonHelper
 
-+ (CGPoint)findCentroidForNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex{
++ (CGPoint)findCentroidForNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
+{
+
+    CGPoint theCentroid;
+    CGPoint a;
+    CGPoint b;
+
+    double signedArea = 0.0;
+    double k = 0.0; // Partial signed area
+
+    // For all vertices except last
+    int i = 0;
+    for (i = 0; i < numberOfPoints; ++i) {
+        if (i == numberOfPoints - 1) {
+            a = CGPointMake(xAtIndex(i), yAtIndex(i));
+            b = CGPointMake(xAtIndex(0), yAtIndex(i));
+        }
+        else {
+            a = CGPointMake(xAtIndex(i), yAtIndex(i));
+            b = CGPointMake(xAtIndex(i + 1), yAtIndex(i + 1));
+        }
+        k = a.x * b.y - a.y * b.x;
+        signedArea += k;
+        theCentroid.x += (a.x + b.x) * k;
+        theCentroid.y += (a.y + b.y) * k;
+    }
+
+    signedArea *= 0.5;
+    theCentroid.x /= (6.0 * signedArea);
+    theCentroid.y /= (6.0 * signedArea);
+
+    return theCentroid;
+}
+
++ (CGPoint)findCentroidForNumberOfPointsNewAlgorithm:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
+{
+
+    float a, cx, cy, t;
+    int i, i1;
 	
-	CGPoint theCentroid;
-	CGPoint a;
-	CGPoint b;
+    /* First calculate the polygon's signed area A */
+
+    a = 0.0;
+    i1 = 1;
+    for (i = 0; i < numberOfPoints; i++) {
+        a += xAtIndex(i) * yAtIndex(i1) - xAtIndex(i1) * yAtIndex(i);
+        i1 = (i1 + 1) % numberOfPoints;
+    }
+    a *= 0.5;
+
+    /* Now calculate the centroid coordinates Cx and Cy */
+
+    cx = cy = 0.0;
+    i1 = 1;
+    for (i = 0; i < numberOfPoints; i++) {
+        t = xAtIndex(i) * yAtIndex(i1) - xAtIndex(i1) * yAtIndex(i);
+        cx += (xAtIndex(i) + xAtIndex(i1)) * t;
+        cy += (yAtIndex(i) + yAtIndex(i1)) * t;
+        i1 = (i1 + 1) % numberOfPoints;
+    }
+    cx = cx / (6.0 * a);
+    cy = cy / (6.0 * a);
 	
-	double signedArea = 0.0;
-	double k = 0.0;  // Partial signed area
-	
-	// For all vertices except last
-	int i=0;
-	for (i=0; i<numberOfPoints; ++i)
-	{
-		if(i == numberOfPoints-1){
-			a = CGPointMake(xAtIndex(i), yAtIndex(i));
-			b = CGPointMake(xAtIndex(0), yAtIndex(i));
-		}else{
-			a = CGPointMake(xAtIndex(i), yAtIndex(i));
-			b = CGPointMake(xAtIndex(i+1), yAtIndex(i+1));
-		}
-		k = a.x*b.y - a.y*b.x;
-		signedArea += k;
-		theCentroid.x += (a.x + b.x)*k;
-		theCentroid.y += (a.y + b.y)*k;
-	}
-	
-	signedArea *= 0.5;
-	theCentroid.x /= (6.0*signedArea);
-	theCentroid.y /= (6.0*signedArea);
-	
-	return theCentroid;
+	return CGPointMake(cx, cy);
 	
 }
 
 + (BOOL)isPointContained:(CGPoint)point inNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
 {
-	BOOL result = NO;
-	
-	int i = 0;
-	int j = (int)numberOfPoints - 1;
-	for ( ; i < numberOfPoints; j = i++)
-	{
-		
-		CGPoint iPoint = CGPointMake(xAtIndex(i), yAtIndex(i));
-		CGPoint jPoint = CGPointMake(xAtIndex(j), yAtIndex(j));
-		
-		if (((iPoint.y > point.y) != (jPoint.y>point.y)) &&
-			(point.x < (jPoint.x-iPoint.x) * (point.y-iPoint.y) / (jPoint.y-iPoint.y) + iPoint.x))
-			result = !result;
-	}
-	return result;
-}
+    BOOL result = NO;
 
+    int i = 0;
+    int j = (int)numberOfPoints - 1;
+    for (; i < numberOfPoints; j = i++) {
+
+        CGPoint iPoint = CGPointMake(xAtIndex(i), yAtIndex(i));
+        CGPoint jPoint = CGPointMake(xAtIndex(j), yAtIndex(j));
+
+        if (((iPoint.y > point.y) != (jPoint.y > point.y)) && (point.x < (jPoint.x - iPoint.x) * (point.y - iPoint.y) / (jPoint.y - iPoint.y) + iPoint.x))
+            result = !result;
+    }
+    return result;
+}
 
 @end
