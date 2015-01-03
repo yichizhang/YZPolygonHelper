@@ -5,7 +5,6 @@ A few class methods to help working with polygons; such as: find the center (cen
 
 ![Screenshot](https://raw.githubusercontent.com/yichizhang/YZPolygonHelper/master/demogif1.gif)
 
-
 Examples
 
 ```swift
@@ -46,3 +45,16 @@ Examples
 		}
 	)
 ```
+
+## Acknowledgements/ Copyright information
+
+###'Find Centroid'
+
+Algorithm by Paul Bourke
+http://paulbourke.net/geometry/polygonmesh/
+
+Adapted from the C code provided by 'squeamish ossifrage'
+http://stackoverflow.com/users/1679849/squeamish-ossifrage
+
+From page
+http://stackoverflow.com/questions/19766485/how-to-calculate-centroid-of-polygon-in-c

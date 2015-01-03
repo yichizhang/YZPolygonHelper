@@ -14,6 +14,18 @@
 + (CGPoint)findCentroidForNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
 {
 
+	/*
+	 Algorithm by Paul Bourke
+	 http://paulbourke.net/geometry/polygonmesh/
+	 
+	 Adapted from the C code provided by 'squeamish ossifrage'
+	 http://stackoverflow.com/users/1679849/squeamish-ossifrage
+	 
+	 From page
+	 http://stackoverflow.com/questions/19766485/how-to-calculate-centroid-of-polygon-in-c
+	 
+	 */
+	
     float a, cx, cy, t;
     int i, i1;
 	
