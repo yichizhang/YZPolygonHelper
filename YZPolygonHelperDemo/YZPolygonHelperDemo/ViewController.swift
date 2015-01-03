@@ -18,8 +18,9 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 
-		// Quick test of a bug
-		
+		//
+		// The previous algorithm wouldn't work if the polygon is a rectangle
+		// Testing
 		let points =
 		[
 			CGPointMake(10, 10),
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
 			CGPointMake(10, 50),
 		]
 		let center:CGPoint =
-			YZPolygonHelper.findCentroidForNumberOfPointsNewAlgorithm(
+			YZPolygonHelper.findCentroidForNumberOfPoints(
 				points.count,
 				
 				xAtIndexBlock: { (UInt idx) -> CGFloat in
@@ -47,6 +48,8 @@ class ViewController: UIViewController {
 		println(center)
 		
 		
+		//
+		// Set up the polygon view
 		self.mainView = PolygonView(frame: self.view.bounds)
 		self.view.addSubview(mainView)
 		

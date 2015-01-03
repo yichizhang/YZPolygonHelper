@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2014 Yichi Zhang
+ Copyright (c) 2015 Yichi Zhang
  https://github.com/yichizhang
  zhang-yi-chi@hotmail.com
  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -12,40 +12,6 @@
 @implementation YZPolygonHelper
 
 + (CGPoint)findCentroidForNumberOfPoints:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
-{
-
-    CGPoint theCentroid;
-    CGPoint a;
-    CGPoint b;
-
-    double signedArea = 0.0;
-    double k = 0.0; // Partial signed area
-
-    // For all vertices except last
-    int i = 0;
-    for (i = 0; i < numberOfPoints; ++i) {
-        if (i == numberOfPoints - 1) {
-            a = CGPointMake(xAtIndex(i), yAtIndex(i));
-            b = CGPointMake(xAtIndex(0), yAtIndex(i));
-        }
-        else {
-            a = CGPointMake(xAtIndex(i), yAtIndex(i));
-            b = CGPointMake(xAtIndex(i + 1), yAtIndex(i + 1));
-        }
-        k = a.x * b.y - a.y * b.x;
-        signedArea += k;
-        theCentroid.x += (a.x + b.x) * k;
-        theCentroid.y += (a.y + b.y) * k;
-    }
-
-    signedArea *= 0.5;
-    theCentroid.x /= (6.0 * signedArea);
-    theCentroid.y /= (6.0 * signedArea);
-
-    return theCentroid;
-}
-
-+ (CGPoint)findCentroidForNumberOfPointsNewAlgorithm:(NSInteger)numberOfPoints xAtIndexBlock:(YZFloatForIntegerBlock)xAtIndex yAtIndexBlock:(YZFloatForIntegerBlock)yAtIndex
 {
 
     float a, cx, cy, t;

@@ -26,7 +26,7 @@ class Polygon: NSObject {
 	func updateCentroid(){
 		
 		self.centroidPointView.center =
-		YZPolygonHelper.findCentroidForNumberOfPointsNewAlgorithm(
+		YZPolygonHelper.findCentroidForNumberOfPoints(
 			self.controlPointViewsArray.count,
 			
 			xAtIndexBlock: { (UInt idx) -> CGFloat in
