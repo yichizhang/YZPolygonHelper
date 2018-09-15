@@ -13,10 +13,10 @@ class ControlPointView: UIView {
 	var gr:UIPanGestureRecognizer!
 	
 	func commonInit(){
-		gr = UIPanGestureRecognizer(target: self, action: "panGestureHandler:")
+    gr = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
 		self.addGestureRecognizer(gr)
 		
-		self.backgroundColor = UIColor.clearColor()
+		self.backgroundColor = UIColor.clear
 	}
 	
 	override init(frame: CGRect) {
@@ -24,26 +24,22 @@ class ControlPointView: UIView {
 		commonInit()
 	}
 	
-	required init(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
 		commonInit()
 	}
 	
-	override init() {
-		super.init()
-		commonInit()
+  override func draw(_ rect: CGRect) {
+    guard let ctx = UIGraphicsGetCurrentContext() else { return }
+    
+    ctx.addEllipse(in: rect.insetBy(dx: 1, dy: 1))
+    ctx.setStrokeColor(UIColor.red.cgColor)
+    ctx.strokePath()
 	}
 	
-	override func drawRect(rect: CGRect) {
-		var ctx:CGContextRef = UIGraphicsGetCurrentContext()
-		CGContextAddEllipseInRect(ctx, CGRectInset(rect, 1, 1))
-		CGContextSetStrokeColor(ctx, CGColorGetComponents(UIColor.redColor().CGColor))
-		CGContextStrokePath(ctx)
-	}
-	
-	func panGestureHandler(recognizer:UIPanGestureRecognizer){
+	@objc private func onPan(_ recognizer:UIPanGestureRecognizer) {
 		
-		var loc:CGPoint = recognizer.locationInView(self.superview!)
+    let loc = recognizer.location(in: self.superview!)
 
 		self.center = loc
 	}

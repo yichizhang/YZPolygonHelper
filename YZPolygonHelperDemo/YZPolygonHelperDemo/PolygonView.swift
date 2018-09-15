@@ -12,33 +12,29 @@ class PolygonView: UIView {
 
 	var polygonsArray:Array<Polygon> = []
 
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
+		super.draw(rect)
 		
-		/*
-		Something's wrong!!!
-		*/
-		super.drawRect(rect)
-		
-		UIColor.whiteColor().setFill()
+		UIColor.white.setFill()
 		var ctx = UIGraphicsGetCurrentContext()
-		CGContextFillRect(ctx, rect)
+    ctx?.fill(rect)
 		
 		let path = UIBezierPath()
 		
-		var idx:Int = 0
+		var idx = 0
 		for polygon:Polygon in self.polygonsArray {
 			for pointView:ControlPointView in polygon.controlPointViewsArray {
 				if (idx == 0){
-					path.moveToPoint(pointView.center)
-				}else{
-					path.addLineToPoint(pointView.center)
+          path.move(to: pointView.center)
+				} else {
+          path.addLine(to: pointView.center)
 				}
-				idx++
+				idx += 1
 			}
 		}
 		
-		path.closePath()
-		UIColor.purpleColor().setStroke()
+		path.close()
+		UIColor.purple.setStroke()
 		path.stroke()
 	}
 	
@@ -53,7 +49,7 @@ class PolygonView: UIView {
 	func addPolygon(polygon:Polygon){
 		
 		self.polygonsArray.append(polygon)
-		polygon.addToView(self)
+		polygon.addToView(view: self)
 	}
 
 }

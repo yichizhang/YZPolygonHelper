@@ -11,29 +11,25 @@ import UIKit
 class CentroidPointView: UIView {
 	
 	func commonInit(){
-		self.backgroundColor = UIColor.clearColor()
+		self.backgroundColor = UIColor.clear
 	}
 	
-	override init(frame: CGRect) {
-		super.init(frame: frame)
-		commonInit()
-	}
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    commonInit()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    commonInit()
+  }
 	
-	required init(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
-	
-	override init() {
-		super.init()
-		commonInit()
-	}
-	
-	override func drawRect(rect: CGRect) {
-		var ctx:CGContextRef = UIGraphicsGetCurrentContext()
-		CGContextAddEllipseInRect(ctx, CGRectInset(rect, 1, 1))
-		CGContextSetFillColor(ctx, CGColorGetComponents(UIColor.blueColor().CGColor))
-		CGContextFillPath(ctx)
+	override func draw(_ rect: CGRect) {
+    guard let ctx = UIGraphicsGetCurrentContext() else { return }
+    
+    ctx.addEllipse(in: rect.insetBy(dx: 1, dy: 1))
+    ctx.setFillColor(UIColor.blue.cgColor)
+    ctx.fillPath()
 	}
 
 }

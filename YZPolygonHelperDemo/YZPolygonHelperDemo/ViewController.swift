@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
 	var mainView:PolygonView!
 	var polygon1:Polygon = Polygon()
-	var myTimer:NSTimer!
+	var myTimer:Timer!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,29 +23,29 @@ class ViewController: UIViewController {
 		// Testing
 		let points =
 		[
-			CGPointMake(10, 10),
-			CGPointMake(50, 10),
-			CGPointMake(50, 50),
-			CGPointMake(10, 50),
+      CGPoint(x: 10, y: 10),
+      CGPoint(x: 50, y: 10),
+      CGPoint(x: 50, y: 50),
+      CGPoint(x: 10, y: 50),
 		]
 		let center:CGPoint =
-			YZPolygonHelper.findCentroidForNumberOfPoints(
-				points.count,
+			YZPolygonHelper.findCentroidForNumber(
+        ofPoints: points.count,
 				
-				xAtIndexBlock: { (UInt idx) -> CGFloat in
+				xAtIndexBlock: { (idx) -> CGFloat in
 					
 					let point = points[idx]
 					return point.x
 				},
 				
-				yAtIndexBlock:{ (UInt idx) -> CGFloat in
+				yAtIndexBlock:{ (idx) -> CGFloat in
 					
 					let point = points[idx]
 					return point.y
 				}
 		)
 		
-		println(center)
+		print(center)
 		
 		
 		//
@@ -63,25 +63,28 @@ class ViewController: UIViewController {
 			let radius = CGFloat(80)
 			//CGFloat(UInt(arc4random_uniform(UInt32(80)))) + 20
 			
-			var controlPoint = ControlPointView(frame: CGRectMake(0.0, 0.0, 20.0, 20.0))			
+      var controlPoint = ControlPointView(frame: CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0))
 			var x:CGFloat = w + CGFloat(sinf(Float(amount))) * radius
 			var y:CGFloat = h + CGFloat(cosf(Float(amount))) * radius
 			
-			controlPoint.center = CGPointMake(x, y)
+      controlPoint.center = CGPoint(x: x, y: y)
 			
 			self.polygon1.controlPointViewsArray.append(controlPoint)
 		}
 		
-		self.mainView.addPolygon(self.polygon1)
+    self.mainView.addPolygon(polygon: self.polygon1)
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		self.myTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "timerFired:", userInfo: nil, repeats: true)
+    self.myTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [unowned self] (timer) in
+      self.mainView.updatePolygons()
+      self.mainView.setNeedsDisplay()
+    })
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		myTimer.invalidate()
 	}
@@ -90,20 +93,4 @@ class ViewController: UIViewController {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-
-	func timerFired(object:AnyObject) {
-		/*
-		UIView.animateWithDuration(
-			0.99,
-			animations: { () -> Void in
-				
-				self.mainView.updatePolygons()
-		})
-		*/
-		self.mainView.updatePolygons()
-//		 Playing with it
-//		self.mainView.setNeedsDisplayInRect(CGRectMake(0, 0, CGRectGetMidX(self.mainView.frame), CGRectGetMidY(self.mainView.frame)))
-		self.mainView.setNeedsDisplay()
-	}
-
 }
