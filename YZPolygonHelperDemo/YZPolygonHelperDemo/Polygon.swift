@@ -11,7 +11,7 @@ import UIKit
 class Polygon: NSObject {
 
 	var controlPointViewsArray:Array<ControlPointView> = []
-	var centroidPointView:CentroidPointView = CentroidPointView(frame: CGRectMake(0, 0, 20, 20))
+  var centroidPointView:CentroidPointView = CentroidPointView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
 	
 	func addToView(view:UIView){
 		
@@ -26,16 +26,16 @@ class Polygon: NSObject {
 	func updateCentroid(){
 		
 		self.centroidPointView.center =
-		YZPolygonHelper.findCentroidForNumberOfPoints(
-			self.controlPointViewsArray.count,
+		YZPolygonHelper.findCentroidForNumber(
+      ofPoints: self.controlPointViewsArray.count,
 			
-			xAtIndexBlock: { (UInt idx) -> CGFloat in
+			xAtIndexBlock: { (idx) -> CGFloat in
 			
 				let view:ControlPointView = self.controlPointViewsArray[idx]
 				return view.center.x
 			},
 			
-			yAtIndexBlock:{ (UInt idx) -> CGFloat in
+			yAtIndexBlock:{ (idx) -> CGFloat in
 				
 				let view:ControlPointView = self.controlPointViewsArray[idx]
 				return view.center.y
